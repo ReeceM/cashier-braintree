@@ -1,20 +1,20 @@
 <?php
 
-namespace Laravel\Cashier;
+namespace ReeceM\Cashier;
 
-use Exception;
-use Carbon\Carbon;
+use Braintree\Customer as BraintreeCustomer;
 use Braintree\Customer;
-use Illuminate\Support\Arr;
 use Braintree\PaymentMethod;
 use Braintree\PayPalAccount;
-use InvalidArgumentException;
 use Braintree\Result\Successful;
-use Braintree\TransactionSearch;
-use Illuminate\Support\Collection;
-use Braintree\Customer as BraintreeCustomer;
-use Braintree\Transaction as BraintreeTransaction;
 use Braintree\Subscription as BraintreeSubscription;
+use Braintree\Transaction as BraintreeTransaction;
+use Braintree\TransactionSearch;
+use Carbon\Carbon;
+use Exception;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
+use InvalidArgumentException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 trait Billable
@@ -82,7 +82,7 @@ trait Billable
      *
      * @param  string  $subscription
      * @param  string  $plan
-     * @return \Laravel\Cashier\SubscriptionBuilder
+     * @return \ReeceM\Cashier\SubscriptionBuilder
      */
     public function newSubscription($subscription, $plan): SubscriptionBuilder
     {
@@ -149,7 +149,7 @@ trait Billable
      * Get a subscription instance by name.
      *
      * @param  string  $subscription
-     * @return \Laravel\Cashier\Subscription|null
+     * @return \ReeceM\Cashier\Subscription|null
      */
     public function subscription($subscription = 'default')
     {
@@ -174,7 +174,7 @@ trait Billable
      * Find an invoice by ID.
      *
      * @param  string  $id
-     * @return \Laravel\Cashier\Invoice|null
+     * @return \ReeceM\Cashier\Invoice|null
      */
     public function findInvoice($id)
     {
@@ -195,7 +195,7 @@ trait Billable
      * Find an invoice or throw a 404 error.
      *
      * @param  string  $id
-     * @return \Laravel\Cashier\Invoice
+     * @return \ReeceM\Cashier\Invoice
      */
     public function findInvoiceOrFail($id): Invoice
     {

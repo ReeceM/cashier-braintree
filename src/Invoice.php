@@ -1,14 +1,14 @@
 <?php
 
-namespace Laravel\Cashier;
+namespace ReeceM\Cashier;
 
+use Braintree\Transaction as BraintreeTransaction;
+use Braintree\Transaction;
 use Carbon\Carbon;
 use Dompdf\Dompdf;
-use Braintree\Transaction;
+use Illuminate\Contracts\View\View as ViewContract;
 use Illuminate\Support\Facades\View;
 use Symfony\Component\HttpFoundation\Response;
-use Braintree\Transaction as BraintreeTransaction;
-use Illuminate\Contracts\View\View as ViewContract;
 
 class Invoice
 {

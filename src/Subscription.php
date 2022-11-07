@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\Cashier;
+namespace ReeceM\Cashier;
 
 use Exception;
 use Carbon\Carbon;
@@ -173,7 +173,7 @@ class Subscription extends Model
      * Swap the subscription to a new Braintree plan.
      *
      * @param  string  $plan
-     * @return $this|\Laravel\Cashier\Subscription
+     * @return $this|\ReeceM\Cashier\Subscription
      * @throws \Exception
      */
     public function swap($plan)
@@ -233,7 +233,7 @@ class Subscription extends Model
      * Swap the subscription to a new Braintree plan with a different frequency.
      *
      * @param  \Braintree\Plan  $plan
-     * @return \Laravel\Cashier\Subscription
+     * @return \ReeceM\Cashier\Subscription
      * @throws \Exception
      */
     protected function swapAcrossFrequencies($plan): self

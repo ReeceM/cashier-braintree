@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\Cashier;
+namespace ReeceM\Cashier;
 
 use Exception;
 use Braintree\Plan;
