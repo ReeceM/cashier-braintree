@@ -2,26 +2,27 @@
 
 namespace ReeceM\Cashier\Tests;
 
+use Braintree;
 use Carbon\Carbon;
-use Braintree_Configuration;
-use Illuminate\Http\Request;
-use ReeceM\Cashier\Billable;
-use PHPUnit\Framework\TestCase;
-use Illuminate\Database\Schema\Builder;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Database\ConnectionInterface;
 use Illuminate\Database\Capsule\Manager as DB;
+use Illuminate\Database\ConnectionInterface;
 use Illuminate\Database\Eloquent\Model as Eloquent;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Schema\Builder;
+use Illuminate\Http\Request;
+use PHPUnit\Framework\TestCase;
+use ReeceM\Cashier\Billable;
 use ReeceM\Cashier\Http\Controllers\WebhookController;
 
 class CashierTest extends TestCase
 {
-    public function setUp()
+    /** @return void  */
+    public function setUp(): void
     {
-        Braintree_Configuration::environment('sandbox');
-        Braintree_Configuration::merchantId(getenv('BRAINTREE_MERCHANT_ID'));
-        Braintree_Configuration::publicKey(getenv('BRAINTREE_PUBLIC_KEY'));
-        Braintree_Configuration::privateKey(getenv('BRAINTREE_PRIVATE_KEY'));
+        Braintree\Configuration::environment('sandbox');
+        Braintree\Configuration::merchantId(getenv('BRAINTREE_MERCHANT_ID'));
+        Braintree\Configuration::publicKey(getenv('BRAINTREE_PUBLIC_KEY'));
+        Braintree\Configuration::privateKey(getenv('BRAINTREE_PRIVATE_KEY'));
 
         Eloquent::unguard();
 
@@ -57,7 +58,7 @@ class CashierTest extends TestCase
         });
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         $this->schema()->drop('users');
         $this->schema()->drop('subscriptions');
@@ -66,8 +67,8 @@ class CashierTest extends TestCase
     public function test_subscriptions_can_be_created()
     {
         $owner = User::create([
-            'email' => 'taylor@laravel.com',
-            'name' => 'Taylor Otwell',
+            'email' => 'zsh.rce+tests@gmail.com',
+            'name' => 'Reece M',
         ]);
 
         // Create Subscription
@@ -127,8 +128,8 @@ class CashierTest extends TestCase
     public function test_creating_subscription_with_coupons()
     {
         $owner = User::create([
-            'email' => 'taylor@laravel.com',
-            'name' => 'Taylor Otwell',
+            'email' => 'zsh.rce+tests@gmail.com',
+            'name' => 'Reece M',
         ]);
 
         // Create Subscription
@@ -156,8 +157,8 @@ class CashierTest extends TestCase
     public function test_creating_subscription_with_trial()
     {
         $owner = User::create([
-            'email' => 'taylor@laravel.com',
-            'name' => 'Taylor Otwell',
+            'email' => 'zsh.rce+tests@gmail.com',
+            'name' => 'Reece M',
         ]);
 
         // Create Subscription
@@ -183,8 +184,8 @@ class CashierTest extends TestCase
     public function test_applying_coupons_to_existing_customers()
     {
         $owner = User::create([
-            'email' => 'taylor@laravel.com',
-            'name' => 'Taylor Otwell',
+            'email' => 'zsh.rce+tests@gmail.com',
+            'name' => 'Reece M',
         ]);
 
         // Create Subscription
@@ -207,8 +208,8 @@ class CashierTest extends TestCase
     public function test_yearly_to_monthly_properly_prorates()
     {
         $owner = User::create([
-            'email' => 'taylor@laravel.com',
-            'name' => 'Taylor Otwell',
+            'email' => 'zsh.rce+tests@gmail.com',
+            'name' => 'Reece M',
         ]);
 
         // Create Subscription
@@ -242,8 +243,8 @@ class CashierTest extends TestCase
     public function test_monthly_to_yearly_properly_prorates()
     {
         $owner = User::create([
-            'email' => 'taylor@laravel.com',
-            'name' => 'Taylor Otwell',
+            'email' => 'zsh.rce+tests@gmail.com',
+            'name' => 'Reece M',
         ]);
 
         // Create Subscription
@@ -281,8 +282,8 @@ class CashierTest extends TestCase
     public function test_marking_as_cancelled_from_webhook()
     {
         $owner = User::create([
-            'email' => 'taylor@laravel.com',
-            'name' => 'Taylor Otwell',
+            'email' => 'zsh.rce+tests@gmail.com',
+            'name' => 'Reece M',
         ]);
 
         // Create Subscription
@@ -307,8 +308,8 @@ class CashierTest extends TestCase
     public function test_marking_subscription_cancelled_on_grace_period_as_cancelled_now_from_webhook()
     {
         $owner = User::create([
-            'email' => 'taylor@laravel.com',
-            'name' => 'Taylor Otwell',
+            'email' => 'zsh.rce+tests@gmail.com',
+            'name' => 'Reece M',
         ]);
 
         // Create Subscription
