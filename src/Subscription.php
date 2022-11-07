@@ -2,13 +2,13 @@
 
 namespace ReeceM\Cashier;
 
-use Exception;
-use Carbon\Carbon;
 use Braintree\Plan;
-use LogicException;
-use InvalidArgumentException;
-use Illuminate\Database\Eloquent\Model;
 use Braintree\Subscription as BraintreeSubscription;
+use Carbon\Carbon;
+use Exception;
+use Illuminate\Database\Eloquent\Model;
+use InvalidArgumentException;
+use LogicException;
 
 class Subscription extends Model
 {
