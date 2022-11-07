@@ -8,7 +8,7 @@
 
 ## Introduction
 
-> Unfortunately, we've decided to abandon maintenance for the laravel/cashier-braintree library. We recommend using the braintree/braintree_php library directly from now on. You're free to fork and maintain your own version if you like.
+> Maintained Fork of the original package. This has been done to support a current customers application.
 
 Laravel Cashier Braintree provides an expressive, fluent interface to [Braintree's](https://www.braintreepayments.com/) subscription billing services. It handles almost all of the boilerplate subscription billing code you are dreading writing. In addition to basic subscription management, Cashier Braintree can handle coupons, swapping subscription, cancellation grace periods, and even generate invoice PDFs.
 
@@ -23,7 +23,7 @@ You will need to set the following details locally and on your Braintree account
     BRAINTREE_MERCHANT_ID=
     BRAINTREE_PUBLIC_KEY=
     BRAINTREE_PRIVATE_KEY=
-    BRAINTREE_MODEL=Laravel\Cashier\Tests\User
+    BRAINTREE_MODEL=ReeceM\Cashier\Tests\User
     
 You can set these variables in the `phpunit.xml.dist` file.
 
