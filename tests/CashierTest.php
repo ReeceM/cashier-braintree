@@ -66,6 +66,7 @@ class CashierTest extends TestCase
 
     public function test_subscriptions_can_be_created()
     {
+        /** @var User */
         $owner = User::create([
             'email' => 'zsh.rce+tests@gmail.com',
             'name' => 'Reece M',
@@ -127,6 +128,7 @@ class CashierTest extends TestCase
 
     public function test_creating_subscription_with_coupons()
     {
+        /** @var User */
         $owner = User::create([
             'email' => 'zsh.rce+tests@gmail.com',
             'name' => 'Reece M',
@@ -156,6 +158,7 @@ class CashierTest extends TestCase
 
     public function test_creating_subscription_with_trial()
     {
+        /** @var User */
         $owner = User::create([
             'email' => 'zsh.rce+tests@gmail.com',
             'name' => 'Reece M',
@@ -183,6 +186,7 @@ class CashierTest extends TestCase
 
     public function test_applying_coupons_to_existing_customers()
     {
+        /** @var User */
         $owner = User::create([
             'email' => 'zsh.rce+tests@gmail.com',
             'name' => 'Reece M',
@@ -207,6 +211,7 @@ class CashierTest extends TestCase
 
     public function test_yearly_to_monthly_properly_prorates()
     {
+        /** @var User */
         $owner = User::create([
             'email' => 'zsh.rce+tests@gmail.com',
             'name' => 'Reece M',
@@ -231,7 +236,7 @@ class CashierTest extends TestCase
         foreach ($braintreeSubscription->discounts as $discount) {
             if ($discount->id === 'plan-credit') {
                 $this->assertEquals('10.00', $discount->amount);
-                $this->assertEquals(10, $discount->numberOfBillingCycles);
+                $this->assertEquals(9, $discount->numberOfBillingCycles);
 
                 return;
             }
@@ -242,6 +247,7 @@ class CashierTest extends TestCase
 
     public function test_monthly_to_yearly_properly_prorates()
     {
+        /** @var User */
         $owner = User::create([
             'email' => 'zsh.rce+tests@gmail.com',
             'name' => 'Reece M',
@@ -269,7 +275,7 @@ class CashierTest extends TestCase
 
         foreach ($braintreeSubscription->discounts as $discount) {
             if ($discount->id === 'plan-credit') {
-                $this->assertEquals('100.00', $discount->amount);
+                $this->assertEquals('90.00', $discount->amount);
                 $this->assertEquals(1, $discount->numberOfBillingCycles);
 
                 return;
@@ -281,6 +287,7 @@ class CashierTest extends TestCase
 
     public function test_marking_as_cancelled_from_webhook()
     {
+        /** @var User */
         $owner = User::create([
             'email' => 'zsh.rce+tests@gmail.com',
             'name' => 'Reece M',
@@ -290,7 +297,8 @@ class CashierTest extends TestCase
         $owner->newSubscription('main', 'monthly-10-1')->create($this->getTestToken());
 
         // Perform Request to Webhook
-        $request = Request::create('/', 'POST', [], [], [], [], json_encode(['kind' => 'SubscriptionCanceled',
+        $request = Request::create('/', 'POST', [], [], [], [], json_encode([
+            'kind' => 'SubscriptionCanceled',
             'subscription' => [
                 'id' => $owner->subscription('main')->braintree_id,
             ],
@@ -307,6 +315,7 @@ class CashierTest extends TestCase
 
     public function test_marking_subscription_cancelled_on_grace_period_as_cancelled_now_from_webhook()
     {
+        /** @var User */
         $owner = User::create([
             'email' => 'zsh.rce+tests@gmail.com',
             'name' => 'Reece M',
@@ -322,7 +331,8 @@ class CashierTest extends TestCase
         $this->assertTrue($subscription->onGracePeriod());
 
         // Perform Request to Webhook
-        $request = Request::create('/', 'POST', [], [], [], [], json_encode(['kind' => 'SubscriptionCanceled',
+        $request = Request::create('/', 'POST', [], [], [], [], json_encode([
+            'kind' => 'SubscriptionCanceled',
             'subscription' => [
                 'id' => $subscription->braintree_id,
             ],
