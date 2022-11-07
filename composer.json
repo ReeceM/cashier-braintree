@@ -1,41 +1,44 @@
 {
-    "abandoned": "braintree/braintree_php",
-    "name": "laravel/cashier-braintree",
-    "description": "Laravel Cashier provides an expressive, fluent interface to Braintree's subscription billing services.",
-    "keywords": ["laravel", "braintree", "billing", "cashier"],
+    "name": "reecem/cashier-braintree",
+    "description": "A Laravel Cashier fork.",
+    "keywords": ["braintree", "billing", "cashier"],
     "license": "MIT",
     "authors": [
         {
             "name": "Taylor Otwell",
             "email": "taylorotwell@gmail.com"
+        },
+        {
+            "name" : "Reece May",
+            "email": "zsh.rce@gmail.com"
         }
     ],
     "require": {
-        "php": "^7.1.3",
-        "braintree/braintree_php": "~3.38",
-        "dompdf/dompdf": "^0.8.0",
-        "illuminate/contracts": "~5.7.0|~5.8.0|~5.9.0",
-        "illuminate/database": "~5.7.0|~5.8.0|~5.9.0",
-        "illuminate/http": "~5.7.0|~5.8.0|~5.9.0",
-        "illuminate/routing": "~5.7.0|~5.8.0|~5.9.0",
-        "illuminate/support": "~5.7.0|~5.8.0|~5.9.0",
-        "illuminate/view": "~5.7.0|~5.8.0|~5.9.0",
-        "nesbot/carbon": "^1.26.3|^2.0",
-        "symfony/http-kernel": "~4.0"
+        "php": "^8.0",
+        "braintree/braintree_php": "~6.0",
+        "dompdf/dompdf": "^2.0",
+        "illuminate/contracts": "~9.0",
+        "illuminate/database": "~9.0",
+        "illuminate/http": "~9.0",
+        "illuminate/routing": "~9.0",
+        "illuminate/support": "~9.0",
+        "illuminate/view": "~9.0",
+        "nesbot/carbon": "^2.0",
+        "symfony/http-kernel": "~6.0"
     },
     "require-dev": {
         "ext-json": "*",
         "mockery/mockery": "~1.0",
-        "phpunit/phpunit": "~7.0"
+        "phpunit/phpunit": "~9.0"
     },
     "autoload": {
         "psr-4": {
-            "Laravel\\Cashier\\": "src/"
+            "ReeceM\\Cashier\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Laravel\\Cashier\\Tests\\": "tests/"
+            "ReeceM\\Cashier\\Tests\\": "tests/"
         }
     },
     "extra": {
@@ -44,7 +47,7 @@
         },
         "laravel": {
             "providers": [
-                "Laravel\\Cashier\\CashierServiceProvider"
+                "ReeceM\\Cashier\\CashierServiceProvider"
             ]
         }
     },
